@@ -38,7 +38,7 @@
 
 
 #define USB_VENDOR_ID_EFI	0x2650	/* Electronics For Imaging, Inc	*/
-#define USB_DEVICE_ID_EFI_EBEAM	0x1311	/* eBeam hardware :		*/
+#define USB_DEVICE_ID_EFI_EBEAM	0x1320	/* eBeam hardware :		*/
 					/*	Luidia Classic and Edge	*/
 					/*	Nec NP01Wi1 & NP01Wi2	*/
 
