@@ -1,0 +1,44 @@
+eBeam kernel module v0.9
+
+Compilation :
+
+Install the tools needed to compile kernel modules, see your linux
+distribution's documentation.
+
+Unpack the ebeam archive, and :
+
+#>cd ebeam-0.9
+#>make
+
+
+Loading the kernel module :
+
+Plug the ebeam device.
+
+ebeam devices are currently handled by the HID generic usb driver.
+Until upstream inclusion, you'll need to manually unbind
+the device from usbhid before inserting the module.
+
+#>lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 003 Device 002: ID 05fe:0011 Chic Technology Corp. Browser Mouse
+Bus 004 Device 002: ID 2650:1311 Electronics For Imaging, Inc. [hex]  <-
+      ^          ^
+
+#>echo -n "4-2:1.0" > /sys/bus/usb/drivers/usbhid/unbind
+
+#>insmod ebeam.ko
+
+Check your log, you should see something like this :
+
+input: USB eBeam 2650:1311 as /devices/pci0000:00/0000:00:10.2/usb4/4-2/4-2:1.0/input/12
+
+At this stage, the driver is in uncalibrated mode, sending raw coordinates
+that aren't even remotly matching screen ones. However, X evdev driver catch it, and
+you can play with your stylus, this should make your screen mouse pointer move.
+
+Now, go check ebeam_tools.

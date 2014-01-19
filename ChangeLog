@@ -1,0 +1,27 @@
+v0.2 :
+  clean usb
+  input part : add some function redirection
+  adjust input prop/events
+v0.3 :
+  sysfs [min|max]_[x|y], h1..h9, calibrated
+  rounding tweak
+v0.4 :
+  spinlock input in classic_setup_input (changing parameters)
+  change define : CONFIG_INPUT_EBEAM_USB_CLASSIC
+                  USB_VENDOR_ID_EFI
+                  USB_DEVICE_ID_EFI_CLASSIC
+v0.5 :
+  final cleanup for submission
+  hid blacklist (see drivers/hid/hid-ids.h and drivers/hid/hid-core.c)
+v0.6 :
+  #define cleanup : remove DEBUG, move CONFIG_INPUT_EBEAM_USB_CLASSIC to makefile
+v0.7 :
+  strip down the driver : suppress device-specific parts and irq_always.
+v0.8 :
+  remove hid.h include
+  remove DRIVER_VERSION
+  cosmetic : force closing ) in udev->name if strlcat overflowed
+  X,Y -> raw_x,raw_y
+  use div64_s64 for 64-bits divisions
+v0.9 :
+  tested with edge and nec interactive solution (same usb id)
